@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Superadmin Dashboard</h1>
+
+    <div class="columns">
+        <div class="column">
+            <h2 class="subtitle">Pending Validation</h2>
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in pending_users %}
+                    <tr>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <a href="{{ url_for('validate_user', user_id=user.id) }}" class="button is-primary">Validate</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="column">
+            <h2 class="subtitle">Validated Users</h2>
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in validated_users %}
+                    <tr>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>
+                            <div class="buttons">
+                                <a href="{{ url_for('assign_role', user_id=user.id, role='teacher') }}" class="button is-info">Assign Teacher</a>
+                                <a href="{{ url_for('assign_role', user_id=user.id, role='parent') }}" class="button is-info">Assign Parent</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

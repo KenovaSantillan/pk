@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Student Dashboard</h1>
+
+    <h2 class="subtitle">Your Courses</h2>
+    <div class="columns is-multiline">
+        {% for course in courses %}
+        <div class="column is-one-third">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        {{ course.name }}
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View Course</a>
+                </footer>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

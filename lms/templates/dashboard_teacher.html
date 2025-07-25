@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Teacher Dashboard</h1>
+
+    <div class="columns">
+        <div class="column is-one-third">
+            <h2 class="subtitle">Create a new course</h2>
+            <form action="{{ url_for('create_course') }}" method="post">
+                <div class="field">
+                    <label class="label">Course Name</label>
+                    <div class="control">
+                        <input class="input" type="text" name="name" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary">Create Course</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="column">
+            <h2 class="subtitle">Your Courses</h2>
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <td>{{ course.name }}</td>
+                        <td>
+                            <a href="#" class="button is-info">Manage</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

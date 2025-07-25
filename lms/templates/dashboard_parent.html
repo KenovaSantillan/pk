@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Parent Dashboard</h1>
+
+    <h2 class="subtitle">Your Children</h2>
+    <div class="columns is-multiline">
+        {% for student in students %}
+        <div class="column is-one-third">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        {{ student.email }}
+                    </p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <p><strong>Courses:</strong></p>
+                        <ul>
+                            {% for enrollment in student.enrollments %}
+                            <li>{{ enrollment.course.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View Details</a>
+                </footer>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
